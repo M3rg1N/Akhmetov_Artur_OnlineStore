@@ -1,0 +1,136 @@
+<Page x:Class="OnlineStore.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Мой профиль">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0 0 0 12">
+                <TextBlock Text="Мой профиль" FontSize="30" HorizontalAlignment="Center"/>
+                <Button x:Name="BtLogout" Content="Выйти из аккаунта" FontSize="15"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Click="BtLogout_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0 0 0 12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" Margin="0 0 0 8">
+                    <TextBlock Text="Личные данные" FontSize="20" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="TBlGuestMessage" Text="Гостевой режим. Чтобы изменить данные или оформить заказ, войдите в аккаунт."
+                               Visibility="Collapsed" MaxWidth="500" TextWrapping="Wrap" TextAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Margin="0 4">
+                    <TextBlock Text="Фамилия" FontSize="15" Width="115" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TBLastName" Width="170" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="0 4">
+                    <TextBlock Text="Имя" FontSize="15" Width="115" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TBFirstName" Width="170" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" Margin="0 4">
+                    <TextBlock Text="Отчество" FontSize="15" Width="115" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TBMiddleName" Width="170" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="0 4">
+                    <TextBlock Text="Логин" FontSize="15" Width="115" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TBLoginProfile" Width="170" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal" Margin="0 4">
+                    <TextBlock Text="Телефон" FontSize="15" Width="115" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TBPhoneProfile" Width="170" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" Margin="0 4">
+                    <TextBlock Text="Email" FontSize="15" Width="115" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TBEmailProfile" Width="170" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0 4">
+                    <TextBlock Text="Адрес доставки" FontSize="15" Width="115" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TBAddress" Width="450" IsReadOnly="True"/>
+                </StackPanel>
+                <Button x:Name="BtEditProfile" Width="200" Grid.Column="0" Grid.Row="5" Content="Изменить данные" Margin="0 6" Click="BtEditProfile_Click"/>
+                <Button x:Name="BtSaveProfile" Width="200" Grid.Column="1" Grid.Row="5" Content="Сохранить изменения" IsEnabled="False" Margin="0 6" Click="BtSaveProfile_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="0 0 0 12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Подтверждение данных" FontSize="20" HorizontalAlignment="Center" Margin="0 0 0 8"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 3" VerticalAlignment="Center">
+                    <TextBlock Text="Телефон" Width="115" FontSize="15" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TBlPhoneStatus" Text="Не подтверждён" Width="170" FontSize="15" VerticalAlignment="Center"/>
+                    <Button x:Name="BtVerifyPhone" Content="Подтвердить" FontSize="15" Click="BtVerifyPhone_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 3" VerticalAlignment="Center">
+                    <TextBlock Text="Email" Width="115" FontSize="15" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TBlEmailStatus" Text="Не подтверждён" Width="170" FontSize="15" VerticalAlignment="Center"/>
+                    <Button x:Name="BtVerifyEmail" Content="Подтвердить" FontSize="15" Click="BtVerifyEmail_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0 3" VerticalAlignment="Center">
+                    <TextBlock Text="Адрес" Width="115" FontSize="15" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TBlAddressStatus" Text="Не подтверждён" Width="170" FontSize="15" VerticalAlignment="Center"/>
+                    <Button x:Name="BtVerifyAddress" Content="Подтвердить" FontSize="15" Click="BtVerifyAddress_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="История заказов" FontSize="20" HorizontalAlignment="Center" Margin="0 0 0 8"/>
+                <Grid Grid.Row="1" Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="№ заказа" FontSize="15" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="Дата" FontSize="15" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Text="Сумма" FontSize="15" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Text="Статус" FontSize="15" HorizontalAlignment="Center"/>
+                </Grid>
+                <ListView x:Name="LVHistory" Grid.Row="2" Height="190" HorizontalContentAlignment="Stretch" MouseDoubleClick="LVHistory_MouseDoubleClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding IdOrder}" HorizontalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding DateOrder, StringFormat='{}{0:dd.MM.yyyy}'}" HorizontalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding TotalPrice, StringFormat='{}{0:N2} руб.'}" HorizontalAlignment="Center"/>
+                                <TextBlock Grid.Column="3" Text="{Binding Status}" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Page>

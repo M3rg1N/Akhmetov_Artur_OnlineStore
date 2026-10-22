@@ -1,0 +1,153 @@
+<Page x:Class="OnlineStore.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Управление магазином">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Управление магазином" FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 10"/>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Товары">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="Список товаров" FontSize="20" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" Margin="0 5 0 7">
+                            <TextBlock Text="Поиск товаров" FontSize="15" Margin="0 0 20 0" VerticalAlignment="Center"/>
+                            <TextBox x:Name="TBSearchAdmin" Width="200" FontSize="15" TextChanged="TBSearchAdmin_TextChanged"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <ListView x:Name="LVAdminProducts" Grid.Row="1" HorizontalContentAlignment="Stretch">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0 3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding NameProduct}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding PriceProduct, StringFormat='{}{0:N2} руб.'}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding QuantityProduct}" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="3" Content="Изменить" Margin="3 0" Click="BtEditProduct_Click"/>
+                                    <Button Grid.Column="4" Content="Удалить" Margin="3 0" Click="BtDeleteProduct_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <TextBlock Grid.Row="2" Text="Добавление/редактирование товаров" FontSize="20" HorizontalAlignment="Center" Margin="0 8 0 5"/>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0 3">
+                            <TextBlock Text="Название" FontSize="15" Width="105" VerticalAlignment="Center"/>
+                            <TextBox x:Name="TBProductName" Width="180" FontSize="15"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="0 3">
+                            <TextBlock Text="Категория" FontSize="15" Width="105" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="CBProductCategory" Width="180" FontSize="15" DisplayMemberPath="NameCategory"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0 3">
+                            <TextBlock Text="Цена" FontSize="15" Width="105" VerticalAlignment="Center"/>
+                            <TextBox x:Name="TBProductPrice" Width="180" FontSize="15"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0 3">
+                            <TextBlock Text="Количество" FontSize="15" Width="105" VerticalAlignment="Center"/>
+                            <TextBox x:Name="TBProductQuantity" Width="180" FontSize="15"/>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 8 0 0">
+                        <Button x:Name="BtNewProduct" Width="155" Content="Новый товар" Margin="5 0" Click="BtNewProduct_Click"/>
+                        <Button x:Name="BtSaveProduct" Width="155" Content="Сохранить товар" Margin="5 0" Click="BtSaveProduct_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="TabUsers" Header="Пользователи">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Список пользователей" FontSize="20" HorizontalAlignment="Center" Margin="0 0 0 8"/>
+                    <ListView x:Name="LVUsers" Grid.Row="1" HorizontalContentAlignment="Stretch" SelectionChanged="LVUsers_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0 4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Login}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding IdRoleNavigation.NameRole}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                        <TextBlock Text="Назначить роль:" VerticalAlignment="Center" FontSize="15" Margin="0 0 10 0"/>
+                        <ComboBox x:Name="CBUserRole" Width="190" DisplayMemberPath="NameRole"/>
+                        <Button x:Name="BtSaveRole" Content="Сохранить роль" Margin="10 0 0 0" Click="BtSaveRole_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Заказы">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Управление заказами" FontSize="20" HorizontalAlignment="Center" Margin="0 0 0 8"/>
+                    <ListView x:Name="LVOrders" Grid.Row="1" HorizontalContentAlignment="Stretch" SelectionChanged="LVOrders_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0 4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding IdOrder}" Margin="0 0 10 0" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Login}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding DateOrder, StringFormat='{}{0:dd.MM.yyyy}'}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding TotalPrice, StringFormat='{}{0:N2} руб.'}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding Status}" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="5" Content="Подробнее" Margin="3 0" Click="BtOrderDetails_Click"/>
+                                    <Button Grid.Column="6" Content="Удалить" Margin="3 0" Click="BtDeleteOrder_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                        <TextBlock Text="Новый статус:" FontSize="15" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                        <ComboBox x:Name="CBOrderStatus" Width="170" DisplayMemberPath="NameOrderStatus"/>
+                        <Button x:Name="BtSaveOrderStatus" Content="Сохранить статус" Margin="10 0 0 0" Click="BtSaveOrderStatus_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>
